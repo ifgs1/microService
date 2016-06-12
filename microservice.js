@@ -1,20 +1,20 @@
+var MongoClient = require('mongodb').MongoClient;
+
 module.exports = function service(options) {
-
-  this.add({ type: 'calculadora', function: 'sumar' }, sumar)
-  this.add({ type: 'calculadora', function: 'restar' }, restar)
-
-  function sumar(msg, respond) {
-    var vars = msg.vars;
-    var num1 = vars.num1;
-    var num2 = vars.num2;
-    respond( null, { respond: num1+num2 });
+  this.add({ type: 'stock', function: 'stockByCategory' }, stockByCategory)
+  function stockByCategory(respond) {
+    MongoClient.connect('mongodb://test:test@ds021969.mlab.com:21969/cloud', function(err, db) {
+      if (err) {
+        throw err;
+        respond( null, { respond: err });
+      }
+      db.collection('stockByCategory').find().toArray(function(err, result) {
+        if (err) {
+          throw err;
+        }
+        console.log(result);
+        respond( null, { respond: result });
+      });
+    });
   }
-
-  function restar(msg, respond) {
-      var vars = msg.vars;
-      var num1 = vars.num1;
-      var num2 = vars.num2;
-      respond( null, { respond: num1-num2 });
-  }
-
 }

@@ -1,15 +1,16 @@
 {
-  "name": "servicio-calculadora",
+  "name": "microservicio-inventarios",
   "version": "1.0.0",
-  "description": "Calculadora",
-  "author": "jsurrego",
+  "description": "Inventarios",
+  "author": "ifgarcia11",
   "license": "uniandes",
   "dependencies": {
     "seneca": "0.6.2",
     "express": "*",
-    "body-parser": "*"
+    "body-parser": "*",
+    "mongodb": "~2.1.18"
   },
   "scripts": {
-  	"start": "node server-init.js"
+    "start": "node server-init.js"
   }
 }
