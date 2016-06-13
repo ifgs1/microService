@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient;
 module.exports = function service(options) {
 
-  this.add({ type: 'calculadora', function: 'stockByCategory' }, stockByCategory)
+  this.add({ type: 'stockByCategory', function: 'stockByCategory' }, stockByCategory)
 
   function stockByCategory(msg, respond) {
     MongoClient.connect('mongodb://test:test@ds021969.mlab.com:21969/cloud', function(err, db) {
